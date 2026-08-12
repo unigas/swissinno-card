@@ -1,0 +1,30 @@
+name: Publish v0.1.0
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Publish v0.1.0
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if gh release view v0.1.0 >/dev/null 2>&1; then
+            echo "Release v0.1.0 already exists."
+            exit 0
+          fi
+
+          gh release create v0.1.0 dist/swissinno-card.js \
+            --title "SWISSINNO Trap Card v0.1.0" \
+            --target "${GITHUB_SHA}" \
+            --notes "Initial release of SWISSINNO Trap Card. Includes Ready/Caught/Unavailable status, automatic discovery of SWISSINNO BLE companion entities, battery voltage, RSSI, Last seen, Slag/Senaste slag history, model display, conditional Reset support, compact mode, and a graphical card editor."
