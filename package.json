@@ -1,0 +1,10 @@
+{
+  "name": "swissinno-card",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Lovelace card for the SWISSINNO BLE Home Assistant integration",
+  "scripts": {
+    "check": "node --check dist/swissinno-card.js"
+  },
+  "license": "MIT"
+}
