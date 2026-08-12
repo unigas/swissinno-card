@@ -1,9 +1,15 @@
-name: Publish v0.1.0
+name: Publish release
 
 on:
   push:
-    branches:
-      - main
+    tags:
+      - "v*"
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: "Release tag, for example v0.2.0"
+        required: true
+        type: string
 
 permissions:
   contents: write
@@ -15,16 +21,22 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@v4
 
-      - name: Publish v0.1.0
+      - name: Publish release
         env:
           GH_TOKEN: ${{ github.token }}
+          DISPATCH_TAG: ${{ inputs.tag }}
         run: |
-          if gh release view v0.1.0 >/dev/null 2>&1; then
-            echo "Release v0.1.0 already exists."
-            exit 0
+          if [ "${GITHUB_EVENT_NAME}" = "workflow_dispatch" ]; then
+            TAG="${DISPATCH_TAG}"
+          else
+            TAG="${GITHUB_REF_NAME}"
           fi
 
-          gh release create v0.1.0 dist/swissinno-card.js \
-            --title "SWISSINNO Trap Card v0.1.0" \
-            --target "${GITHUB_SHA}" \
-            --notes "Initial release of SWISSINNO Trap Card. Includes Ready/Caught/Unavailable status, automatic discovery of SWISSINNO BLE companion entities, battery voltage, RSSI, Last seen, Slag/Senaste slag history, model display, conditional Reset support, compact mode, and a graphical card editor."
+          if gh release view "${TAG}" >/dev/null 2>&1; then
+            gh release upload "${TAG}" dist/swissinno-card.js --clobber
+          else
+            gh release create "${TAG}" dist/swissinno-card.js \
+              --title "SWISSINNO Trap Card ${TAG}" \
+              --target "${GITHUB_SHA}" \
+              --generate-notes
+          fi
