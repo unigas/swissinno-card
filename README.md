@@ -2,6 +2,8 @@
 
 A compact Lovelace card for [`unigas/swissinno_ble`](https://github.com/unigas/swissinno_ble), the local Bluetooth integration for SWISSINNO Connect SuperCat and Electronic SuperCat traps.
 
+[![Release downloads](https://img.shields.io/github/downloads/unigas/swissinno-card/total?label=release%20downloads&logo=github)](https://github.com/unigas/swissinno-card/releases)
+
 ![SWISSINNO Trap Card preview](docs/preview.svg)
 
 ## Features
