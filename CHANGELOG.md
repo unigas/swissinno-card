@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.1.1
+
+- Recognize the current Swedish `Antal slag` trigger-count label while retaining
+  compatibility with the earlier `Slag` label.
+- Synchronize the documentation and preview with `swissinno_ble` 1.0.30.
+- Pin the upgraded official GitHub Actions to immutable release commits.
+
 ## 0.1.0
 
 - Add automatic display of trigger history (`trigger_count` and `last_triggered`).
