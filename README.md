@@ -65,7 +65,7 @@ Copy `dist/swissinno-card.js` to your Home Assistant `www` directory, add it as 
 
 ## Compatibility
 
-Designed for the `swissinno_ble` integration and current Home Assistant frontend APIs. Entity suggestion support requires Home Assistant 2026.6 or later. Trigger history is optional and appears automatically when `last_triggered` / `trigger_count` are provided by the installed integration version. In the Swedish translation these entities are shown as **Senaste slag** and **Slag**.
+Designed for the `swissinno_ble` integration and current Home Assistant frontend APIs. Entity suggestion support requires Home Assistant 2026.6 or later. Trigger history is optional and appears automatically when `last_triggered` / `trigger_count` are provided by integration version 1.0.30 or later. In the Swedish translation these entities are shown as **Senaste slag** and **Antal slag**.
 
 ## Related project
 
